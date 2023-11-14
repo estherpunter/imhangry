@@ -1,0 +1,8 @@
+.active-menu-link {
+    border-bottom: none;
+}
+
+.default-menu-link {
+    border-bottom: 1px solid black;
+}
+

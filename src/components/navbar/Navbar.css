@@ -1,8 +1,8 @@
 .active-menu-link {
-    border-bottom: none;
+    border-bottom: 3px solid black;
 }
 
 .default-menu-link {
-    border-bottom: 1px solid black;
+    border-bottom: none;
 }
 

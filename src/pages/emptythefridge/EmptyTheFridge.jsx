@@ -1,8 +1,20 @@
 function EmptyTheFridge() {
     return (
         <>
-            Hier kan je ingrediënten invoeren die je in je koelkast heb liggen.
-            De applicatie heeft de dan een recept terug!
+            <div>
+                <h1>Empty the fridge</h1>
+                <p>What ingredients do you want to use?</p>
+                <input
+                    type="search"
+                    id="ingredient-field"
+                    name="ingredient-field"
+                />
+            </div>
+            <div>
+                <button type="button">
+                    Show me a recipe!
+                </button>
+            </div>
         </>
     )
 }

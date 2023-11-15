@@ -1,8 +1,36 @@
-.active-menu-link {
-    border-bottom: 3px solid black;
+.active-menu-link::after {
+    content: "";
+    display: block;
+    width: 5px;
+    height: 5px;
+    background-color: black;
+    text-align: center;
+    margin: 12px auto;
+    border-radius: 50%;
 }
 
 .default-menu-link {
     border-bottom: none;
 }
 
+ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    gap: 60px;
+    list-style: none;
+    padding: 30px;
+    font-family: 'Inter', sans-serif;
+    text-decoration: none;
+}
+
+a:link, a:visited {
+    text-decoration: none;
+    color: #000000;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+a:hover {
+    color: #FFA386;
+}

@@ -1,19 +1,17 @@
 import axios from "axios";
 import {useState} from "react";
-import {useForm} from "react-hook-form";
 
 
 function AllRecipes() {
     const [error, toggleError] = useState(false);
     const [loading, toggleLoading] = useState(false);
 
-
     async function fetchData() {
         toggleError(false);
         toggleLoading(true);
 
         try {
-            const response = await axios.get('https://api.edamam.com/api/recipes/v2?type=public&app_id=48b29177&app_key=1f0f159ce52371ca9f5937111c6446c1', {
+            const response = await axios.get('https://api.edamam.com/api/recipes/v2?type=public&q=' + 'banana' + '&app_id=48b29177&app_key=1f0f159ce52371ca9f5937111c6446c1', {
                     'Accept': 'application/json',
                     'Accept-Language': 'en',
                 },
@@ -43,11 +41,14 @@ function AllRecipes() {
 
     return (
         <>
-            Here you can browse through all the recipes!
-                <button type="button" onClick={fetchData}>
-                    Show all recipes
-                </button>
+            <h1>All recipes</h1>
+            <p>Here you can browse through all the recipes!</p>
 
+            <div>
+            <button type="button" onClick={fetchData}>
+                Show all recipes
+            </button>
+            </div>
             {error && <p>Something went wrong with fetching the data</p>}
             {loading && <p>Loading...</p>}
 

@@ -49,8 +49,8 @@ function AllRecipes() {
                 Show all recipes
             </button>
             </div>
-            {error && <p>Something went wrong with fetching the data</p>}
-            {loading && <p>Loading...</p>}
+            {error && <p className="error">Something went wrong with fetching the data</p>}
+            {loading && <p className="loading">Loading...</p>}
 
         </>
     )

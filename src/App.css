@@ -43,9 +43,9 @@ h3 {
     font-size: 40px;
 }
 
-h3 + div {
-    text-align: left;
-}
+/*h3 + div {*/
+/*    text-align: left;*/
+/*}*/
 
 p {
     font-family: 'Inter', sans-serif;

@@ -4,15 +4,14 @@ import axios from "axios";
 import {AuthContext} from "../../context/AuthContext.jsx";
 
 function SignInPage() {
-
-    const {login} = useContext(AuthContext);
-
-    const {register} = useForm();
-
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, toggleError] = useState(false);
     const [loading, toggleLoading] = useState(false);
+
+    const {login, token} = useContext(AuthContext);
+
+    const {register} = useForm();
 
     async function handleSubmit(e) {
         e.preventDefault();
@@ -24,10 +23,10 @@ function SignInPage() {
                     username: username,
                     password: password,
                 }, {
-                    // headers: {
-                    //     "Content-Type": "application/json",
-                    //     "Authorization": "Bearer xxx.xxx.xxx",
-                    // }
+                    headers: {
+                        "Content-Type": 'application/json',
+                        Authorization: `Bearer ${token}`,
+                    }
                 }
             );
             login(response.data.accessToken)

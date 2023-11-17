@@ -7,8 +7,20 @@ import SignInPage from "./pages/signin/SignInPage.jsx";
 import Navbar from "./components/navbar/Navbar.jsx";
 import SignUpPage from "./pages/signup/SignUpPage.jsx";
 import ProfilePage from "./pages/profile/ProfilePage.jsx";
+import axios from "axios";
 
 function App() {
+
+    // async function FetchData() {
+    //     try {
+    //         const response = await axios.get('https://frontend-educational-backend.herokuapp.com/api/test/all')
+    //     console.log(response);
+    //     } catch(e) {
+    //         console.error(e);
+    //     }
+    // }
+    //
+    // void FetchData();
 
     return (
         <>

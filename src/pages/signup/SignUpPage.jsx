@@ -1,4 +1,4 @@
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {useState} from "react";
 import './SignUpPage.css';
 import axios from "axios";
@@ -9,11 +9,12 @@ function SignUpPage() {
     const [username, setUsername] = useState('')
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [error, toggleError] = useState(false);
+    const [loading, toggleLoading] = useState(false);
 
     const {register} = useForm();
 
-    const [error, toggleError] = useState(false);
-    const [loading, toggleLoading] = useState(false);
+    const navigate = useNavigate();
 
     async function handleSubmit(e) {
         e.preventDefault(e);
@@ -23,18 +24,12 @@ function SignUpPage() {
         try {
             const response = await axios.post('https://frontend-educational-backend.herokuapp.com/api/auth/signup',
                 {
-                    "username": username,
-                    "email": email,
-                    "password": password,
-                    "role": ["user"],
-                }, {
-                    headers: {
-                        "Content-Type": "application/json",
-                        "Authorization": "Bearer xxx.xxx.xxx",
-                    }
-                }
-            )
-            console.log(response)
+                    username: username,
+                    email: email,
+                    password: password,
+                    role: ["user"],
+                });
+            navigate('/signin')
         } catch (e) {
             console.error(e);
             toggleError(true);

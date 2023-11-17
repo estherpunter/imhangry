@@ -7,7 +7,7 @@ export const AuthContext = createContext({});
 
 function AuthContextProvider({children}) {
     const [isAuth, setIsAuth] = useState({
-        isAuth: false,
+        isAuthenticated: false,
         user: null,
         status: 'pending',
     });
@@ -36,13 +36,14 @@ function AuthContextProvider({children}) {
         try {
             const response = await axios.get(`https://frontend-educational-backend.herokuapp.com/api/${userId}`, {
                 headers: {
-                    "Content-Type": 'application/json',
-                    "Authorization": `Bearer ${token}`,
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
                 }
             });
+            console.log(response);
 
             setIsAuth({
-                isAuth: true,
+                isAuthenticated: true,
                 user: {
                     username: response.data.username,
                     email: response.data.email,
@@ -56,15 +57,18 @@ function AuthContextProvider({children}) {
                 status: 'done',
             })
         }
+        console.log('gebruiker is ingelogd')
         navigate('/profile');
     }
 
     function logout() {
+        localStorage.clear();
         setIsAuth({
-            isAuth: false,
+            isAuthenticated: false,
             user: null,
             status: 'done',
         });
+        console.log('Je bent nu uitgelogd');
         navigate('/');
     }
 

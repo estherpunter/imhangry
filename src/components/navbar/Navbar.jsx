@@ -23,7 +23,6 @@ function Navbar() {
                     <NavLink className={({isActive}) => isActive ?
                         'active-menu-link' : 'default-menu-link'} to="/signup">Sign Up</NavLink>
                 </li>
-
             </ul>
         </nav>
     )

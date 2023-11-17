@@ -1,17 +1,17 @@
 
-function Recipe(title, calories, image, ingredients) {
-    return(
-        <div>
-            <h2>{title}</h2>
-            <ol>
-                {ingredients.map(ingredient => (
-                    <li>{ingredient.text}</li>
-                ))}
-            </ol>
-            <p>Calories: {calories.toFixed()}</p>
-            <img src={image} alt="Recipe image"/>
-        </div>
-    )
-}
-
-export default Recipe;
+// function Recipe ({title, image, ingredients}) {
+//     return (
+//         <div className="recipe">
+//             <h1>{title}</h1>
+//             <ol>
+//                 {ingredients.map(ingredient => (
+//                     <li>{ingredient}</li>
+//                 ))}
+//             </ol>
+//             <img className="recipe-image" src={image} alt="Recipe image"/>
+//         </div>
+//
+//     )
+// }
+//
+// export default Recipe;

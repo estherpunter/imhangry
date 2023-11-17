@@ -1,8 +1,11 @@
 import {useForm} from "react-hook-form";
-import {useState} from "react";
+import {useContext, useState} from "react";
 import axios from "axios";
+import {AuthContext} from "../../context/AuthContext.jsx";
 
 function SignInPage() {
+
+    const {login} = useContext(AuthContext);
 
     const {register} = useForm();
 
@@ -18,10 +21,16 @@ function SignInPage() {
 
         try {
             const response = await axios.post('https://frontend-educational-backend.herokuapp.com/api/auth/signin', {
-                "username": username,
-                "password": password,
-            });
-
+                    username: username,
+                    password: password,
+                }, {
+                    // headers: {
+                    //     "Content-Type": "application/json",
+                    //     "Authorization": "Bearer xxx.xxx.xxx",
+                    // }
+                }
+            );
+            login(response.data.accessToken)
         } catch (e) {
             console.error(e);
             toggleError(true);
@@ -33,31 +42,34 @@ function SignInPage() {
     return (
         <>
             <h1>Sign in</h1>
+
             <form onSubmit={handleSubmit}>
-                <label htmlFor="username-field">
-                    <p>Email address</p>
-                    <input
-                        type="text"
-                        id="username-field"
-                        {...register("username-field")}
-                        placeholder="Username"
-                        onChange={(e) => setUsername(e.target.value)}
-                    />
-                </label>
-                <label htmlFor="password-field">
-                    <p>Password</p>
-                    <input
-                        type="password"
-                        id="password-field"
-                        {...register("password-field")}
-                        placeholder="Password"
-                        onChange={(e) => setPassword(e.target.value)}
-                    />
-                </label>
+                <div>
+                    <label htmlFor="username-field">
+                        <p>Username</p>
+                        <input
+                            type="text"
+                            id="username-field"
+                            {...register("username-field")}
+                            placeholder="Username"
+                            onChange={(e) => setUsername(e.target.value)}
+                        />
+                    </label>
+                    <label htmlFor="password-field">
+                        <p>Password</p>
+                        <input
+                            type="password"
+                            id="password-field"
+                            {...register("password-field")}
+                            placeholder="Password"
+                            onChange={(e) => setPassword(e.target.value)}
+                        />
+                    </label>
+                </div>
+
                 {error && <p className="error">Wrong username and password combination.</p>}
-                <button
-                    type="submit"
-                >
+
+                <button type="submit">
                     Sign in
                 </button>
                 {loading && <p className="loading">Loading...</p>}

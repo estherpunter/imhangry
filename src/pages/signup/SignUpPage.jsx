@@ -9,7 +9,6 @@ function SignUpPage() {
     const [username, setUsername] = useState('')
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [role, setRole] = useState('');
 
     const {register} = useForm();
 
@@ -24,13 +23,18 @@ function SignUpPage() {
         try {
             const response = await axios.post('https://frontend-educational-backend.herokuapp.com/api/auth/signup',
                 {
-                "username": username,
-                "email": email,
-                "password": password,
-                "role": [role],
-            }
+                    "username": username,
+                    "email": email,
+                    "password": password,
+                    "role": ["user"],
+                }, {
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": "Bearer xxx.xxx.xxx",
+                    }
+                }
             )
-        console.log(response)
+            console.log(response)
         } catch (e) {
             console.error(e);
             toggleError(true);
@@ -76,30 +80,9 @@ function SignUpPage() {
                         />
                     </label>
                 </div>
-                <span>
-                    <p>Sign up as</p>
-                    <label htmlFor="user-role">
-                        <input
-                            type="checkbox"
-                            id="user-role"
-                            {...register("user")}
-                            value='User'
-                            onChange={() => setRole('user')}
-                        />
-                        <p>User</p>
-                    </label>
-                    <label htmlFor="admin-role">
-                        <input
-                            type="checkbox"
-                            id="admin-role"
-                            {...register("admin")}
-                            value='Admin'
-                            onChange={() => setRole('admin')}
-                        />
-                        <p>Admin</p>
-                    </label>
-                    {error && <p className="error">There is already an account with this username. Please try again. </p>}
-                </span>
+
+                {error && <p className="error">There is already an account with this username. Please try again. </p>}
+
                 <div>
                     <button
                         type="submit"

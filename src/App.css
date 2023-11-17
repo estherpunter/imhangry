@@ -43,7 +43,7 @@ h3 {
     font-size: 40px;
 }
 
-h3 + p {
+h3 + div {
     text-align: left;
 }
 

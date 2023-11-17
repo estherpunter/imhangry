@@ -1,10 +1,16 @@
 import axios from "axios";
-import {useState} from "react";
-
+import {useEffect, useState} from "react";
+import Recipe from "../../components/recipe/Recipe.jsx";
 
 function AllRecipes() {
     const [error, toggleError] = useState(false);
     const [loading, toggleLoading] = useState(false);
+    const [recipe, setRecipe] = useState({});
+
+
+    useEffect(() => {
+        setRecipe()
+    }, []);
 
     async function fetchData() {
         toggleError(false);
@@ -31,6 +37,7 @@ function AllRecipes() {
                 }
             );
             console.log(response.data);
+            setRecipe(response.data.hits);
             toggleLoading(false);
         } catch (e) {
             console.error(e);
@@ -38,16 +45,21 @@ function AllRecipes() {
         }
     }
 
-
     return (
         <>
             <h1>All recipes</h1>
             <p>Here you can browse through all the recipes!</p>
-
+            <Recipe
+                key={recipe.recipe.label}
+                title={recipe.recipe.label}
+                calories={recipe.recipe.calories}
+                image={recipe.recipe.image}
+                ingredients={recipe.recipe.ingredients}
+            />
             <div>
-            <button type="button" onClick={fetchData}>
-                Show all recipes
-            </button>
+            {/*<button type="button" onClick={fetchData}>*/}
+            {/*    Show all recipes*/}
+            {/*</button>*/}
             </div>
             {error && <p className="error">Something went wrong with fetching the data</p>}
             {loading && <p className="loading">Loading...</p>}

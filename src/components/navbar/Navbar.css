@@ -1,8 +1,8 @@
 .active-menu-link::after {
     content: "";
     display: block;
-    width: 5px;
-    height: 5px;
+    width: 6px;
+    height: 6px;
     background-color: black;
     text-align: center;
     margin: 12px auto;

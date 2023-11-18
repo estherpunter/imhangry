@@ -13,6 +13,10 @@
     border-bottom: none;
 }
 
+nav {
+    position: relative;
+}
+
 nav ul {
     display: flex;
     flex-direction: row;
@@ -33,4 +37,11 @@ a:link, a:visited {
 
 a:hover {
     color: #FFA386;
+}
+
+nav h1 {
+    position: absolute;
+    left: -25px;
+    top: -110px;
+    font-size: 110px;
 }

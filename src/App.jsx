@@ -13,8 +13,8 @@ function App() {
 
     return (
         <>
-            <div className='background-image'>
-                <header className='header'>
+            <div className='outer-container'>
+                <header className='header-container'>
                 <Navbar/>
                 </header>
                 <Routes>

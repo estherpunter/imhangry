@@ -1,6 +1,8 @@
 import {useState} from "react";
 import axios from "axios";
 import Recipe from "../../components/recipe/Recipe.jsx";
+import Button from "../../components/button/Button.jsx";
+import './EmptyTheFridge.css'
 
 function EmptyTheFridge() {
     const [error, toggleError] = useState(false);
@@ -17,6 +19,7 @@ function EmptyTheFridge() {
 
         try {
             const response = await axios.get(`https://api.edamam.com/api/recipes/v2?type=public&q=${query}&app_id=${appId}&app_key=${appKey}`);
+            console.log(response.data.hits)
             setRecipes(response.data.hits);
             toggleLoading(false);
         } catch (e) {
@@ -41,10 +44,14 @@ function EmptyTheFridge() {
             </div>
 
             <div>
-                <button type="button" onClick={fetchRecipes}>
-                    Show me a recipe!
-                </button>
+                <Button
+                    className='recipe-button'
+                    type='submit'
+                    onClick={fetchRecipes}
+                    text='Show me a recipe!'
+                />
             </div>
+
             <div className='search-results'>
                 {Object.keys(recipes).length > 0 &&
                     recipes.map((recipe) => {
@@ -52,11 +59,12 @@ function EmptyTheFridge() {
                                 label={recipe.recipe.label}
                                 image={recipe.recipe.image}
                                 calories={recipe.recipe.calories}
-                                ingredients={recipe.ingredients}
-                                link={recipe.recipe.url}
+                                ingredients={recipe.recipe.ingredients}
                             />
                     }) || <p>There are no recipes with this ingredient</p>}
             </div>
+
+
             {error && <p>Something went wrong with fetching the data</p>}
             {loading && <p>Loading...</p>}
         </>

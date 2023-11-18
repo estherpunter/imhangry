@@ -2,6 +2,7 @@ import {useForm} from "react-hook-form";
 import {useContext, useState} from "react";
 import axios from "axios";
 import {AuthContext} from "../../context/AuthContext.jsx";
+import Button from "../../components/button/Button.jsx";
 
 function SignInPage() {
     const [username, setUsername] = useState('');
@@ -41,7 +42,7 @@ function SignInPage() {
     return (
         <>
             <h1>Sign in</h1>
-            <form className='sign-in-form' onSubmit={handleSubmit}>
+            <form className='sign-in-form'>
                 <div>
                     <label htmlFor="username-field">
                         <p>Username</p>
@@ -67,10 +68,15 @@ function SignInPage() {
 
                 {error && <p className="error">Wrong username and password combination.</p>}
 
-                <button className='form-button' type="submit">
-                    Sign in
-                </button>
-                {loading && <p className="loading">Loading...</p>}
+                <Button
+                    className='form-button'
+                    type="submit"
+                    onClick={handleSubmit}
+                    text='Sign me in!'
+                />
+
+                    {loading && <p className="loading">Loading...</p>}
+
             </form>
         </>
     )

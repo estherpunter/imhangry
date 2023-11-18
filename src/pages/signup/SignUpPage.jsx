@@ -3,6 +3,7 @@ import {useState} from "react";
 import './SignUpPage.css';
 import axios from "axios";
 import {useForm} from "react-hook-form";
+import Button from "../../components/button/Button.jsx";
 
 
 function SignUpPage() {
@@ -43,7 +44,7 @@ function SignUpPage() {
     return (
         <>
             <h1>Sign up</h1>
-            <form className='sign-up-form' onSubmit={handleSubmit}>
+            <form className='sign-up-form'>
                 <div>
                     <label htmlFor="username-field">
                         <p>Username</p>
@@ -80,13 +81,15 @@ function SignUpPage() {
                 {error && <p className="error">There is already an account with this username. Please try again. </p>}
 
                 <div>
-                    <button
+                    <Button
                         className='form-button'
-                        type="submit"
-                        disabled={loading}
-                    >
-                        Sign me up!
-                    </button>
+                        type='submit'
+                        onClick={handleSubmit}
+                        text='Sign me up!'
+                    />
+
+                    {loading && <p>Loading...</p>}
+
                 </div>
             </form>
 

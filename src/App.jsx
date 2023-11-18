@@ -11,21 +11,10 @@ import axios from "axios";
 
 function App() {
 
-    // async function FetchData() {
-    //     try {
-    //         const response = await axios.get('https://frontend-educational-backend.herokuapp.com/api/test/all')
-    //     console.log(response);
-    //     } catch(e) {
-    //         console.error(e);
-    //     }
-    // }
-    //
-    // void FetchData();
-
     return (
         <>
             <div className='background-image'>
-                <header className='navbar'>
+                <header className='header'>
                 <Navbar/>
                 </header>
                 <Routes>

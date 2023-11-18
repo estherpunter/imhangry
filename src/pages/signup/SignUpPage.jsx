@@ -29,6 +29,7 @@ function SignUpPage() {
                     password: password,
                     role: ["user"],
                 });
+            console.log(response);
             navigate('/signin')
         } catch (e) {
             console.error(e);
@@ -42,7 +43,7 @@ function SignUpPage() {
     return (
         <>
             <h1>Sign up</h1>
-            <form onSubmit={handleSubmit}>
+            <form className='sign-up-form' onSubmit={handleSubmit}>
                 <div>
                     <label htmlFor="username-field">
                         <p>Username</p>
@@ -80,6 +81,7 @@ function SignUpPage() {
 
                 <div>
                     <button
+                        className='form-button'
                         type="submit"
                         disabled={loading}
                     >

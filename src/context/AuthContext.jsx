@@ -58,6 +58,7 @@ function AuthContextProvider({children}) {
             })
         }
         console.log('gebruiker is ingelogd')
+
         navigate('/profile');
     }
 
@@ -76,8 +77,8 @@ function AuthContextProvider({children}) {
         ...isAuth,
         login: login,
         logout: logout,
+        navigate: navigate,
     };
-
 
     return (
         <AuthContext.Provider value={data}>

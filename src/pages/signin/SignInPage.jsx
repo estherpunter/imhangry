@@ -41,8 +41,7 @@ function SignInPage() {
     return (
         <>
             <h1>Sign in</h1>
-
-            <form onSubmit={handleSubmit}>
+            <form className='sign-in-form' onSubmit={handleSubmit}>
                 <div>
                     <label htmlFor="username-field">
                         <p>Username</p>
@@ -68,7 +67,7 @@ function SignInPage() {
 
                 {error && <p className="error">Wrong username and password combination.</p>}
 
-                <button type="submit">
+                <button className='form-button' type="submit">
                     Sign in
                 </button>
                 {loading && <p className="loading">Loading...</p>}

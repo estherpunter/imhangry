@@ -2,6 +2,7 @@ function Homepage() {
     return (
         <div>
             <h1>I'm Hangry</h1>
+
             <form>
             <p>How do you feel?</p>
             <input
@@ -22,7 +23,9 @@ function Homepage() {
                 id="chef-field"
             />
                 <div>
-            <button type="button">
+            <button
+                className='form-button'
+                type="button">
                 Show me a recipe!
             </button>
                 </div>

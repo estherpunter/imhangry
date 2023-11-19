@@ -5,12 +5,14 @@ import {useNavigate} from "react-router-dom";
 
 export const AuthContext = createContext({});
 
-function AuthContextProvider({children}) {
+function AuthContextProvider({ children }) {
     const [isAuth, setIsAuth] = useState({
         isAuthenticated: false,
         user: null,
         status: 'pending',
     });
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         const token = localStorage.getItem('token');
@@ -25,8 +27,6 @@ function AuthContextProvider({children}) {
         }
     }, []);
 
-    const navigate = useNavigate();
-
     async function login(token) {
         localStorage.setItem('token', token);
 
@@ -40,9 +40,9 @@ function AuthContextProvider({children}) {
                     Authorization: `Bearer ${token}`,
                 }
             });
-            console.log(response);
 
             setIsAuth({
+                ...isAuth,
                 isAuthenticated: true,
                 user: {
                     username: response.data.username,
@@ -57,8 +57,6 @@ function AuthContextProvider({children}) {
                 status: 'done',
             })
         }
-        console.log('gebruiker is ingelogd')
-
         navigate('/profile');
     }
 
@@ -69,7 +67,6 @@ function AuthContextProvider({children}) {
             user: null,
             status: 'done',
         });
-        console.log('Je bent nu uitgelogd');
         navigate('/');
     }
 

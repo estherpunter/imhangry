@@ -13,20 +13,20 @@ function EmptyTheFridge() {
     const appId = '48b29177';
     const appKey = '1f0f159ce52371ca9f5937111c6446c1'
 
-    async function fetchRecipes() {
-        toggleError(false);
-        toggleLoading(true);
+        async function fetchRecipes() {
+            toggleError(false);
+            toggleLoading(true);
 
-        try {
-            const response = await axios.get(`https://api.edamam.com/api/recipes/v2?type=public&q=${query}&app_id=${appId}&app_key=${appKey}`);
-            console.log(response.data.hits)
-            setRecipes(response.data.hits);
-            toggleLoading(false);
-        } catch (e) {
-            console.error(e);
-            toggleError(true);
+            try {
+                const response = await axios.get(`https://api.edamam.com/api/recipes/v2?type=public&q=${query}&app_id=${appId}&app_key=${appKey}`);
+                console.log(response.data.hits)
+                setRecipes(response.data.hits);
+                toggleLoading(false);
+            } catch (e) {
+                console.error(e);
+                toggleError(true);
+            }
         }
-    }
 
 
     return (
@@ -56,17 +56,17 @@ function EmptyTheFridge() {
                 {Object.keys(recipes).length > 0 &&
                     recipes.map((recipe) => {
                         return <Recipe
-                                label={recipe.recipe.label}
-                                image={recipe.recipe.image}
-                                calories={recipe.recipe.calories}
-                                ingredients={recipe.recipe.ingredients}
-                            />
-                    }) || <p>There are no recipes with this ingredient</p>}
+                            label={recipe.recipe.label}
+                            image={recipe.recipe.image}
+                            calories={recipe.recipe.calories}
+                            ingredients={recipe.recipe.ingredients}
+                        />
+                    })}
             </div>
 
 
-            {error && <p>Something went wrong with fetching the data</p>}
-            {loading && <p>Loading...</p>}
+            {error && <p className='error'>Something went wrong with fetching the data</p>}
+            {loading && <p className='loading'>Loading...</p>}
         </>
     )
 }

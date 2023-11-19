@@ -23,14 +23,13 @@ function SignUpPage() {
         toggleLoading(true);
 
         try {
-            const response = await axios.post('https://frontend-educational-backend.herokuapp.com/api/auth/signup',
+            await axios.post('https://frontend-educational-backend.herokuapp.com/api/auth/signup',
                 {
                     username: username,
                     email: email,
                     password: password,
                     role: ["user"],
                 });
-            console.log(response);
             navigate('/signin')
         } catch (e) {
             console.error(e);
@@ -53,6 +52,7 @@ function SignUpPage() {
                             id="username-field"
                             {...register("username")}
                             placeholder="Username"
+                            value={username}
                             onChange={(e) => setUsername(e.target.value)}
                         />
                     </label>
@@ -63,6 +63,7 @@ function SignUpPage() {
                             id="email-field"
                             {...register("email")}
                             placeholder="Email address"
+                            value={email}
                             onChange={(e) => setEmail(e.target.value)}
                         />
                     </label>
@@ -73,12 +74,13 @@ function SignUpPage() {
                             id="password-field"
                             {...register("password")}
                             placeholder="Password"
+                            value={password}
                             onChange={(e) => setPassword(e.target.value)}
                         />
                     </label>
                 </div>
 
-                {error && <p className="error">There is already an account with this username. Please try again. </p>}
+                {error && <p className="error">Username and password invalid, please try again.</p>}
 
                 <div>
                     <Button
@@ -94,6 +96,7 @@ function SignUpPage() {
             </form>
 
             <p>I already have an account, <Link to='/signin'>sign in</Link> instead.</p>
+
         </>
     )
 }

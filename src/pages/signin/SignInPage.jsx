@@ -3,6 +3,7 @@ import {useContext, useState} from "react";
 import axios from "axios";
 import {AuthContext} from "../../context/AuthContext.jsx";
 import Button from "../../components/button/Button.jsx";
+import './SignInPage.css';
 
 function SignInPage() {
     const [username, setUsername] = useState('');
@@ -10,7 +11,7 @@ function SignInPage() {
     const [error, toggleError] = useState(false);
     const [loading, toggleLoading] = useState(false);
 
-    const {login, token} = useContext(AuthContext);
+    const {login} = useContext(AuthContext);
 
     const {register} = useForm();
 
@@ -23,11 +24,6 @@ function SignInPage() {
             const response = await axios.post('https://frontend-educational-backend.herokuapp.com/api/auth/signin', {
                     username: username,
                     password: password,
-                }, {
-                    headers: {
-                        "Content-Type": 'application/json',
-                        Authorization: `Bearer ${token}`,
-                    }
                 }
             );
             login(response.data.accessToken)
@@ -36,8 +32,9 @@ function SignInPage() {
             toggleError(true);
         }
 
-    }
+        toggleLoading(false);
 
+    }
 
     return (
         <>
@@ -51,6 +48,7 @@ function SignInPage() {
                             id="username-field"
                             {...register("username-field")}
                             placeholder="Username"
+                            value={username}
                             onChange={(e) => setUsername(e.target.value)}
                         />
                     </label>
@@ -61,6 +59,7 @@ function SignInPage() {
                             id="password-field"
                             {...register("password-field")}
                             placeholder="Password"
+                            value={password}
                             onChange={(e) => setPassword(e.target.value)}
                         />
                     </label>
@@ -75,7 +74,7 @@ function SignInPage() {
                     text='Sign me in!'
                 />
 
-                    {loading && <p className="loading">Loading...</p>}
+                {loading && <p className="loading">Loading...</p>}
 
             </form>
         </>

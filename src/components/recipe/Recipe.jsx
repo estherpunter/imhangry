@@ -5,7 +5,7 @@ function Recipe({label, image, calories, ingredients}) {
         <article className='recipe-card'>
             <img className='recipe-image' src={image} alt="Recipe image"/>
             <h4>{label}</h4>
-            <p>Calories: {Math.round({calories})}</p>
+            <p>Calories: {calories}</p>
             <p>Ingredients: {ingredients.length}</p>
         </article>
     )

@@ -1,6 +1,7 @@
 import axios from "axios";
 import {useState} from "react";
 import Button from "../../components/button/Button.jsx";
+import './Homepage.css';
 
 
 function Homepage() {
@@ -32,6 +33,7 @@ function Homepage() {
                     value={selectedMood}
                     onChange={(e) => setSelectedMood(e.target.value)}
                     id='mood-field'
+                    className='select-field'
                 >
                     <option value="comfort">Hangry</option>
                     <option value="healthy">Feeling good</option>
@@ -44,6 +46,7 @@ function Homepage() {
                 value={selectedTime}
                 onChange={(e) => setSelectedTime(e.target.value)}
                 id='time-field'
+                className='select-field'
             >
                 <option value="20">Less than 20 minutes</option>
                 <option value="20+">More than 20 minutes</option>
@@ -56,6 +59,7 @@ function Homepage() {
                 value={selectedMotivation}
                 onChange={(e) => setSelectedMotivation(e.target.value)}
                 id='motivation-field'
+                className='select-field'
             >
                 <option value="5">Not at all</option>
                 <option value="5+">Hell yeah!</option>

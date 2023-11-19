@@ -7,7 +7,6 @@ import SignInPage from "./pages/signin/SignInPage.jsx";
 import Navbar from "./components/navbar/Navbar.jsx";
 import SignUpPage from "./pages/signup/SignUpPage.jsx";
 import ProfilePage from "./pages/profile/ProfilePage.jsx";
-import axios from "axios";
 
 function App() {
 

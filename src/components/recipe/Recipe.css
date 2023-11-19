@@ -1,0 +1,36 @@
+.recipe-card {
+    flex-basis: 20%;
+    border-radius: 20px;
+    margin: 20px;
+    background: #D9D9D9;
+    box-shadow: 5px 5px 8px -2px rgba(115,115,115,0.52);
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.recipe-image {
+    border-radius: 20px 20px 0 0;
+}
+
+.recipe-card h4 {
+    font-family: 'Inter', sans-serif;
+    font-size: 20px;
+    text-align: left;
+    padding: 10px;
+
+}
+
+.recipe-card p {
+    font-family: 'Inter', sans-serif;
+    padding: 0 10px 6px 10px
+}
+
+.recipe-card li {
+    list-style: none;
+    font-family: 'Inter', sans-serif;
+    padding: 0 10px 6px 10px
+
+}
+
+

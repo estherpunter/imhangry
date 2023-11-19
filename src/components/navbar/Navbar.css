@@ -1,0 +1,47 @@
+.active-menu-link::after {
+    content: "";
+    display: block;
+    width: 6px;
+    height: 6px;
+    background-color: black;
+    text-align: center;
+    margin: 12px auto;
+    border-radius: 50%;
+}
+
+.default-menu-link {
+    border-bottom: none;
+}
+
+nav {
+    position: relative;
+}
+
+nav ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    gap: 60px;
+    list-style: none;
+    padding: 30px;
+    font-family: 'Inter', sans-serif;
+    text-decoration: none;
+}
+
+a:link, a:visited {
+    text-decoration: none;
+    color: #000000;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+a:hover {
+    color: #FFA386;
+}
+
+nav h1 {
+    position: absolute;
+    left: -25px;
+    top: -110px;
+    font-size: 110px;
+}

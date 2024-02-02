@@ -46,6 +46,7 @@ function AllRecipes() {
 
     return (
         <>
+            <main>
             <h1>All recipes</h1>
             <p>Here you can browse through all the recipes!</p>
 
@@ -60,9 +61,10 @@ function AllRecipes() {
                         />
                     })}
             </div>
-
+            </main>
             {error && <p className="error">Something went wrong with fetching the data</p>}
             {loading && <p className="loading">Loading...</p>}
+
 
         </>
     )

@@ -25,6 +25,9 @@ function App() {
                     <Route path="/profile" element={<ProfilePage/>}/>
                 </Routes>
             </div>
+            <footer className='footer-text'>
+                <p>Frontend Final Assignment by Esther Punter</p>
+            </footer>
         </>
     )
 }

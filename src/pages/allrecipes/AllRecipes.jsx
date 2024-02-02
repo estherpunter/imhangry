@@ -2,14 +2,15 @@ import {useEffect, useState} from "react";
 import axios from "axios";
 import Recipe from "../../components/recipe/Recipe.jsx";
 import './AllRecipes.css';
+import process from "../../../.eslintrc.cjs";
 
 function AllRecipes() {
     const [error, toggleError] = useState(false);
     const [loading, toggleLoading] = useState(false);
     const [recipes, setRecipes] = useState([])
 
-    const appId = '48b29177';
-    const appKey = '1f0f159ce52371ca9f5937111c6446c1'
+    const appId = `${process.env.REACT_APP_API_ID}`;
+    const appKey = `${process.env.REACT_APP_API_KEY}`
 
 
     useEffect(() => {

@@ -12,7 +12,7 @@ function App() {
 
     return (
         <>
-            <div className='outer-container'>
+            <main className='outer-container'>
                 <header className='header-container'>
                 <Navbar/>
                 </header>
@@ -24,7 +24,7 @@ function App() {
                     <Route path="/signin" element={<SignInPage/>}/>
                     <Route path="/profile" element={<ProfilePage/>}/>
                 </Routes>
-            </div>
+            </main>
             <footer className='footer-text'>
                 <p>Frontend Final Assignment by Esther Punter</p>
             </footer>

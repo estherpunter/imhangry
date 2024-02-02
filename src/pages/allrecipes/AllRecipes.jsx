@@ -49,7 +49,9 @@ function AllRecipes() {
             <main>
             <h1>All recipes</h1>
             <p>Here you can browse through all the recipes!</p>
+            </main>
 
+            <section>
             <div className='recipes-results'>
                 {Object.keys(recipes).length > 0 &&
                     recipes.map((recipe) => {
@@ -61,7 +63,8 @@ function AllRecipes() {
                         />
                     })}
             </div>
-            </main>
+            </section>
+
             {error && <p className="error">Something went wrong with fetching the data</p>}
             {loading && <p className="loading">Loading...</p>}
 

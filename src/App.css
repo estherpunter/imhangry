@@ -61,3 +61,12 @@ input {
     margin: 2px 0 0 0;
 }
 
+.footer-text p {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding: 24px;
+    font-weight: lighter;
+}

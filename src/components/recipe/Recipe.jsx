@@ -3,7 +3,7 @@ import './Recipe.css';
 function Recipe({label, image, calories, ingredients}) {
     return (
         <article className='recipe-card'>
-            <img className='recipe-image' src={image} alt="Recipe image"/>
+            <img className='recipe-image' src={image} alt={label} />
             <h4>{label}</h4>
             <p>Calories: {Math.round(calories)} </p>
             <p>Ingredients: {ingredients.length}</p>

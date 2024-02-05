@@ -11,40 +11,44 @@ function ProfilePage() {
 
     const {user} = useContext(AuthContext)
 
-   useEffect(() => {
-    async function fetchUserData() {
-        toggleError(false);
-        toggleLoading(true);
+    useEffect(() => {
+        async function fetchUserData() {
+            toggleError(false);
+            toggleLoading(true);
 
-        const token = localStorage.getItem('token');
+            const token = localStorage.getItem('token');
 
-        try {
-            const response = await axios.get(`https://frontend-educational-backend.herokuapp.com/api/${user}`, {
-                headers: {
-                    "Content-Type": "application/json",
-                    Authorization: `Bearer ${token}`,
-                }
-            });
-            console.log(response);
-        } catch (e) {
-            console.error(e);
-            toggleError(true);
+            try {
+                const response = await axios.get(`https://frontend-educational-backend.herokuapp.com/api/${user}`, {
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${token}`,
+                    }
+                });
+                console.log(response);
+            } catch (e) {
+                console.error(e);
+                toggleError(true);
+            }
         }
-    }
 
-    void fetchUserData();
+        void fetchUserData();
 
-   }, []);
+    }, []);
 
     return (
         <>
-            <h3>Profile</h3>
-            <div>
-                <p>Username</p>
-                <p>Email address</p>
-            </div>
-            <h2>Favourites</h2>
-            <p>These are your favourite recipes!</p>
+            <main>
+                <h3>Profile</h3>
+                <div>
+                    <p>Username</p>
+                    <p>Email address</p>
+                </div>
+            </main>
+            <section>
+                <h2>Favourites</h2>
+                <p>These are your favourite recipes!</p>
+            </section>
         </>
     )
 }

@@ -76,11 +76,6 @@ function Homepage() {
                     />
                 </div>
             </main>
-
-            <section>
-
-            </section>
-
         </>
     )
 }

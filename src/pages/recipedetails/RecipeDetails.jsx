@@ -1,4 +1,8 @@
+import './RecipeDetails.css';
+
 function RecipeDetails() {
+
+
 
 
 }

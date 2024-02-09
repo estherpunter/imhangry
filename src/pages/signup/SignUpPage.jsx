@@ -4,6 +4,7 @@ import './SignUpPage.css';
 import axios from "axios";
 import {useForm} from "react-hook-form";
 import Button from "../../components/button/Button.jsx";
+import InputField from "../../components/inputfield/InputField.jsx";
 
 
 function SignUpPage() {
@@ -47,10 +48,10 @@ function SignUpPage() {
                     <div>
                         <label htmlFor="username-field">
                             <p>Username</p>
-                            <input
+                            <InputField
                                 type="text"
                                 id="username-field"
-                                {...register("username")}
+                                register={register}
                                 placeholder="Username"
                                 value={username}
                                 onChange={(e) => setUsername(e.target.value)}
@@ -58,10 +59,10 @@ function SignUpPage() {
                         </label>
                         <label htmlFor="email-field">
                             <p>Email address</p>
-                            <input
+                            <InputField
                                 type="email"
                                 id="email-field"
-                                {...register("email")}
+                                register={register}
                                 placeholder="Email address"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
@@ -69,10 +70,10 @@ function SignUpPage() {
                         </label>
                         <label htmlFor="password-field">
                             <p>Password</p>
-                            <input
+                            <InputField
                                 type="password"
                                 id="password-field"
-                                {...register("password")}
+                                register={register}
                                 placeholder="Password"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}

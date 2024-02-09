@@ -4,6 +4,7 @@ import axios from "axios";
 import {AuthContext} from "../../context/AuthContext.jsx";
 import Button from "../../components/button/Button.jsx";
 import './SignInPage.css';
+import InputField from "../../components/inputfield/InputField.jsx";
 
 function SignInPage() {
     const [username, setUsername] = useState('');
@@ -44,10 +45,10 @@ function SignInPage() {
                     <div>
                         <label htmlFor="username-field">
                             <p>Username</p>
-                            <input
+                            <InputField
                                 type="text"
                                 id="username-field"
-                                {...register("username-field")}
+                                register={register}
                                 placeholder="Username"
                                 value={username}
                                 onChange={(e) => setUsername(e.target.value)}
@@ -55,10 +56,10 @@ function SignInPage() {
                         </label>
                         <label htmlFor="password-field">
                             <p>Password</p>
-                            <input
+                            <InputField
                                 type="password"
                                 id="password-field"
-                                {...register("password-field")}
+                                register={register}
                                 placeholder="Password"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}

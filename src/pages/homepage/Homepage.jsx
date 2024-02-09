@@ -3,7 +3,6 @@ import {useState} from "react";
 import Button from "../../components/button/Button.jsx";
 import './Homepage.css';
 
-
 function Homepage() {
     const [selectedMood, setSelectedMood] = useState('');
     const [selectedTime, setSelectedTime] = useState('');
@@ -11,12 +10,11 @@ function Homepage() {
 
     async function fetchData() {
 
-        const appId = '48b29177';
-        const appKey = '1f0f159ce52371ca9f5937111c6446c1'
-
+        const appId = process.env.REACT_APP_API_ID;
+        const appKey = process.env.REACT_APP_API_KEY;
 
         try {
-            const response = await axios.get(`https://api.edamam.com/api/recipes/v2?type=public&app_id=${appId}app_key=${appKey}&ingr=${selectedMotivation}&time=${selectedTime}&tag=${selectedMood}`);
+            const response = await axios.get(`https://api.edamam.com/api/recipes/v2?type=public&app_id=${appId}&app_key=${appKey}&ingr=${selectedMotivation}&time=${selectedTime}&tag=${selectedMood}`);
             console.log(response.data);
         } catch (e) {
             console.error(e);

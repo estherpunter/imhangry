@@ -1,5 +1,5 @@
 import './RecipeDetails.css';
-import {Link, useParams} from "react-router-dom";
+import {useParams} from "react-router-dom";
 import RecipeCard from "../../components/recipecards/RecipeCard.jsx";
 
 function RecipeDetails() {

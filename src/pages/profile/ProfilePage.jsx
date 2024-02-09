@@ -17,13 +17,11 @@ function ProfilePage() {
             toggleError(false);
             toggleLoading(true);
 
-            const token = localStorage.getItem('token');
-
             try {
-                const response = await axios.get("https://frontend-educational-backend.herokuapp.com/api/user", {
+                const response = await axios.get(`https://frontend-educational-backend.herokuapp.com/api/user`, {
                     headers: {
                         "Content-Type": "application/json",
-                        Authorization: `Bearer ${token}`,
+                        Authorization: `Bearer ${localStorage.getItem('token')}`,
                     }
                 });
                 setUserData(response.data);

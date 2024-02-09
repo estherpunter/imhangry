@@ -1,7 +1,8 @@
 import {createContext, useEffect, useState} from "react";
-import {jwtDecode} from "jwt-decode";
+// import {jwtDecode} from "jwt-decode";
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
+import {jwtDecode} from "jwt-decode";
 
 export const AuthContext = createContext({});
 
@@ -16,14 +17,13 @@ function AuthContextProvider({ children }) {
 
     useEffect(() => {
         const token = localStorage.getItem('token');
-
         if (token) {
             void login(token);
         } else {
-            setIsAuth({
-                ...isAuth,
+            setIsAuth(prevState => ({
+                ...prevState,
                 status: 'done',
-            });
+            }));
         }
     }, []);
 
@@ -31,10 +31,10 @@ function AuthContextProvider({ children }) {
         localStorage.setItem('token', token);
 
         const userInfo = jwtDecode(token);
-        const userId = userInfo.sub;
+        const user = userInfo.sub;
 
         try {
-            const response = await axios.get(`https://frontend-educational-backend.herokuapp.com/api/${userId}`, {
+            const response = await axios.get("https://frontend-educational-backend.herokuapp.com/api/user", {
                 headers: {
                     "Content-Type": "application/json",
                     Authorization: `Bearer ${token}`,

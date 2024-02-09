@@ -4,6 +4,8 @@
 
 ## **Inleiding:**
 
+De link naar de git hub repository: https://github.com/estherpunter/imhangry
+
 Het doel van de applicatie is om de dagelijkse moeite van het bedenken van een lekker recept weg te nemen. Men is bewust van het belang van het eten van een gevarieerd dieet, maar in het dagelijks leven kan dit soms nogal wat stress meebrengen. I’m Hangry helpt gebruikers om een keuze te maken en hierbij rekening te houden met hun humeur, tijd en andere behoeften.
 
 Zo kan je direct op de homepagina een paar grappige vragen beantwoorden over hoe je je voelt, hoeveel tijd je hebt, en hoeveel zin je hebt om te komen. De applicatie laat je vervolgens passende recepten zien. Daarnaast kunnen gebruikers de applicatie ook gebruiken om door een grote database van recepten te browsen als ze al een idee hebben over wat ze willen koken. Verder kunnen gebruikers door middel van de zoekfunctie ook op zoek naar gerechten met specifieke ingrediënten, en bestaat er de optie om op specifieke ingrediënten te filteren (voor als je die bijna-rotte tomaat uit je koelkast nog heel graag wil gebruiken in een recept). Ten slotte is het voor gebruikers mogelijk om zich te registreren en inloggen en hun favoriete recepten te bekijken op hun profielpagina.
@@ -31,7 +33,7 @@ Lees van zowel de Edamam API en de NOVI backend de documentatie goed door.
 1. Op de sign up pagina maak je de invoervelden voor de gegevens die je van de gebruiker wilt ontvangen
 2. Vervolgens maak je de state aan
 3. Vergeet niet ook de error en loading state aan te maken
-4. Vervolgens schrijf je een asynchrone functie met een post request om de gegevens van de gebruiker naar de NOVI backend te sturen
+4. Vervolgens schrijf je een asynchrone functie met een POST request om de gegevens van de gebruiker naar de NOVI backend te sturen
 5. Zorg ervoor dat bij het invullen van de invoervelden en het versturen van het formulier, de state verandert
 6. Na het registreren wordt de gebruiker direct doorverwezen naar de inlogpagina (zorg ook dat de gebruiker via deze pagina naar de inlogpagina kan als deze al een account heeft)
 
@@ -52,7 +54,7 @@ Lees van zowel de Edamam API en de NOVI backend de documentatie goed door.
 
 #### **All recipes**
 
-1. Op de All recipes pagina zie je direct alle beschikbare recepten, maak een asynchrone functie met een get request naar de Edamam API
+1. Op de All recipes pagina zie je direct alle beschikbare recepten, maak een asynchrone functie met een GET request naar de Edamam API
 2. Zorg ervoor dat ze mooi op de pagina worden weergegeven (met behulp van het recept kaart component)
 3. Ook hier is het van belang om een stukje state aan te maken
 4. Zet ook hier weer een error en loading state zodat de gebruiker kan zien als er iets mis gaat met het ophalen van de data

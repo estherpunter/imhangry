@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inika:wght@700&family=Lobster&display=swap');
+
 .recipe-card {
     flex-basis: 20%;
     border-radius: 20px;
@@ -30,7 +32,19 @@
     list-style: none;
     font-family: 'Inter', sans-serif;
     padding: 0 10px 6px 10px
+}
 
+a:link, a:visited {
+    font-family: 'Inter', sans-serif;
+    padding: 8px;
+    text-decoration: none;
+    color: #000000;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+a:hover {
+    color: #FFA386;
 }
 
 

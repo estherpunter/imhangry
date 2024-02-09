@@ -7,12 +7,13 @@ import SignInPage from "./pages/signin/SignInPage.jsx";
 import Navbar from "./components/navbar/Navbar.jsx";
 import SignUpPage from "./pages/signup/SignUpPage.jsx";
 import ProfilePage from "./pages/profile/ProfilePage.jsx";
+import RecipeDetails from "./pages/recipedetails/RecipeDetails.jsx";
 
 function App() {
 
     return (
         <>
-            <div className='outer-container'>
+            <main className='outer-container'>
                 <header className='header-container'>
                 <Navbar/>
                 </header>
@@ -23,8 +24,12 @@ function App() {
                     <Route path="/signup" element={<SignUpPage/>}/>
                     <Route path="/signin" element={<SignInPage/>}/>
                     <Route path="/profile" element={<ProfilePage/>}/>
+                    <Route path="/recipe/:label" element={<RecipeDetails/>}/>
                 </Routes>
-            </div>
+            </main>
+            <footer className='footer'>
+                <p>Frontend Final Assignment by Esther Punter</p>
+            </footer>
         </>
     )
 }

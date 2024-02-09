@@ -4,6 +4,7 @@ import './SignUpPage.css';
 import axios from "axios";
 import {useForm} from "react-hook-form";
 import Button from "../../components/button/Button.jsx";
+import InputField from "../../components/inputfield/InputField.jsx";
 
 
 function SignUpPage() {
@@ -23,7 +24,7 @@ function SignUpPage() {
         toggleLoading(true);
 
         try {
-            await axios.post('https://frontend-educational-backend.herokuapp.com/api/auth/signup',
+            await axios.post("https://frontend-educational-backend.herokuapp.com/api/auth/signup",
                 {
                     username: username,
                     email: email,
@@ -34,68 +35,74 @@ function SignUpPage() {
         } catch (e) {
             console.error(e);
             toggleError(true);
+        } finally {
+            toggleLoading(false);
         }
-
-        toggleLoading(false);
     }
-
 
     return (
         <>
-            <h1>Sign up</h1>
-            <form className='sign-up-form'>
-                <div>
-                    <label htmlFor="username-field">
-                        <p>Username</p>
-                        <input
-                            type="text"
-                            id="username-field"
-                            {...register("username")}
-                            placeholder="Username"
-                            value={username}
-                            onChange={(e) => setUsername(e.target.value)}
+            <main>
+                <h1>Sign up</h1>
+                <form className='sign-up-form'>
+                    <div>
+                        <label htmlFor="username-field">
+                            <p>Username</p>
+                            <InputField
+                                type="text"
+                                id="username-field"
+                                register={register}
+                                placeholder="Username"
+                                value={username}
+                                onChange={(e) => setUsername(e.target.value)}
+                            />
+                        </label>
+                        <label htmlFor="email-field">
+                            <p>Email address</p>
+                            <InputField
+                                type="email"
+                                id="email-field"
+                                register={register}
+                                placeholder="Email address"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                            />
+                        </label>
+                        <label htmlFor="password-field">
+                            <p>Password</p>
+                            <InputField
+                                type="password"
+                                id="password-field"
+                                register={register}
+                                placeholder="Password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                            />
+                        </label>
+                    </div>
+
+                    {error && <p className="error">Username and password invalid, please try again.</p>}
+
+                    <div>
+                        <Button
+                            className='form-button'
+                            type='submit'
+                            onClick={handleSubmit}
+                            text='Sign me up!'
                         />
-                    </label>
-                    <label htmlFor="email-field">
-                        <p>Email address</p>
-                        <input
-                            type="email"
-                            id="email-field"
-                            {...register("email")}
-                            placeholder="Email address"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                        />
-                    </label>
-                    <label htmlFor="password-field">
-                        <p>Password</p>
-                        <input
-                            type="password"
-                            id="password-field"
-                            {...register("password")}
-                            placeholder="Password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                        />
-                    </label>
-                </div>
 
-                {error && <p className="error">Username and password invalid, please try again.</p>}
+                        {loading && <p>Loading...</p>}
 
-                <div>
-                    <Button
-                        className='form-button'
-                        type='submit'
-                        onClick={handleSubmit}
-                        text='Sign me up!'
-                    />
+                    </div>
+                </form>
+            </main>
+            <section>
+                <p>I already have an account, <Link to='/signin'>sign in</Link> instead.</p>
+            </section>
 
-                    {loading && <p>Loading...</p>}
+            {error && <p className="error">Something went wrong with loading the page</p>}
+            {loading && <p className="loading">Loading...</p>}
 
-                </div>
-            </form>
-
-            <p>I already have an account, <Link to='/signin'>sign in</Link> instead.</p>
 
         </>
     )

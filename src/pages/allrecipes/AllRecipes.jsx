@@ -2,12 +2,33 @@ import {useEffect, useState} from "react";
 import axios from "axios";
 import Recipe from "../../components/recipe/Recipe.jsx";
 import './AllRecipes.css';
+import Button from "../../components/button/Button.jsx";
+
 // import process from "../../../.eslintrc.cjs";
 
 function AllRecipes() {
     const [error, toggleError] = useState(false);
     const [loading, toggleLoading] = useState(false);
     const [recipes, setRecipes] = useState([])
+    const [currentPage, setCurrentPage] = useState(1);
+
+    const recipesPerPage = 64;
+
+    const startIndex = (currentPage - 1) * recipesPerPage;
+    const endIndex = startIndex + recipesPerPage;
+    const visibleRecipes = recipes.slice(startIndex, endIndex);
+
+    const totalPages = Math.ceil(recipes.length / recipesPerPage);
+
+    const handleNextPage = () => {
+        setCurrentPage(currentPage + 1);
+        console.log('Next page clicked. Current page:', currentPage + 1);
+    };
+
+    const handlePrevPage = () => {
+        setCurrentPage(currentPage - 1);
+    };
+
 
     // const appId = `${process.env.REACT_APP_API_ID}`;
     // const appKey = `${process.env.REACT_APP_API_KEY}`
@@ -50,23 +71,38 @@ function AllRecipes() {
     return (
         <>
             <main>
-            <h1>All recipes</h1>
-            <p>Here you can browse through all the recipes!</p>
+                <h1>All recipes</h1>
+                <p>Here you can browse through all the recipes!</p>
             </main>
 
             <section>
-            <div className='recipes-results'>
-                {Object.keys(recipes).length > 0 &&
-                    recipes.map((recipe) => {
-                        return <Recipe
-                            key={recipe.recipe.label}
-                            label={recipe.recipe.label}
-                            image={recipe.recipe.image}
-                            calories={recipe.recipe.calories}
-                            ingredients={recipe.recipe.ingredients}
-                        />
-                    })}
-            </div>
+                <div className='recipes-results'>
+                    {Object.keys(visibleRecipes).length > 0 &&
+                        recipes.map((recipe) => {
+                            return <Recipe
+                                key={recipe.recipe.label}
+                                label={recipe.recipe.label}
+                                image={recipe.recipe.image}
+                                calories={recipe.recipe.calories}
+                                ingredients={recipe.recipe.ingredients}
+                            />
+                        })}
+                </div>
+                <Button
+                    className='page-button'
+                    type='button'
+                    onClick={handlePrevPage}
+                    disabled={currentPage === 1}
+                    text='Previous'
+                />
+                <Button
+                    className='page-button'
+                    type='button'
+                    onClick={handleNextPage}
+                    disabled={currentPage === totalPages}
+                    text='Next'
+                />
+
             </section>
 
             {error && <p className="error">Something went wrong with fetching the data</p>}

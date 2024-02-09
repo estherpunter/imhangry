@@ -59,6 +59,7 @@ function AllRecipes() {
                 {Object.keys(recipes).length > 0 &&
                     recipes.map((recipe) => {
                         return <Recipe
+                            key={recipe.recipe.label}
                             label={recipe.recipe.label}
                             image={recipe.recipe.image}
                             calories={recipe.recipe.calories}

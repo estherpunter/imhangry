@@ -1,10 +1,12 @@
 import './Recipe.css';
+import {Link} from "react-router-dom";
 
 function Recipe({label, image, calories, ingredients}) {
     return (
-        <article className='recipe-card'>
+        <article
+            className='recipe-card'>
             <img className='recipe-image' src={image} alt={label}/>
-            <h4>{label}</h4>
+            <Link to="/recipedetails">{label}</Link>
             <p>Calories: {Math.round(calories)} </p>
             <p>Ingredients: {ingredients.length}</p>
         </article>

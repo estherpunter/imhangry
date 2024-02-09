@@ -7,6 +7,7 @@ import SignInPage from "./pages/signin/SignInPage.jsx";
 import Navbar from "./components/navbar/Navbar.jsx";
 import SignUpPage from "./pages/signup/SignUpPage.jsx";
 import ProfilePage from "./pages/profile/ProfilePage.jsx";
+import RecipeDetails from "./pages/recipedetails/RecipeDetails.jsx";
 
 function App() {
 
@@ -23,9 +24,10 @@ function App() {
                     <Route path="/signup" element={<SignUpPage/>}/>
                     <Route path="/signin" element={<SignInPage/>}/>
                     <Route path="/profile" element={<ProfilePage/>}/>
+                    <Route path="/recipedetails" element={<RecipeDetails/>}/>
                 </Routes>
             </main>
-            <footer className='footer-text'>
+            <footer className='footer'>
                 <p>Frontend Final Assignment by Esther Punter</p>
             </footer>
         </>

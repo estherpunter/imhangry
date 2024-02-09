@@ -6,11 +6,12 @@ function Recipe({label, image, calories, ingredients}) {
         <article
             className='recipe-card'>
             <img className='recipe-image' src={image} alt={label}/>
-            <Link to="/recipedetails">{label}</Link>
+            <Link to={`/recipe/${label}`}>{label}</Link>
             <p>Calories: {Math.round(calories)} </p>
             <p>Ingredients: {ingredients.length}</p>
         </article>
     )
 }
+
 
 export default Recipe;

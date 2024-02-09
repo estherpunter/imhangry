@@ -24,7 +24,7 @@ function App() {
                     <Route path="/signup" element={<SignUpPage/>}/>
                     <Route path="/signin" element={<SignInPage/>}/>
                     <Route path="/profile" element={<ProfilePage/>}/>
-                    <Route path="/recipedetails" element={<RecipeDetails/>}/>
+                    <Route path="/recipe/:label" element={<RecipeDetails/>}/>
                 </Routes>
             </main>
             <footer className='footer'>

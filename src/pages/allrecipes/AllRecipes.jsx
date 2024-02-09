@@ -3,6 +3,7 @@ import axios from "axios";
 import Recipe from "../../components/recipe/Recipe.jsx";
 import './AllRecipes.css';
 import Button from "../../components/button/Button.jsx";
+import {Link} from "react-router-dom";
 
 // import process from "../../../.eslintrc.cjs";
 
@@ -78,14 +79,16 @@ function AllRecipes() {
             <section>
                 <div className='recipes-results'>
                     {Object.keys(visibleRecipes).length > 0 &&
-                        recipes.map((recipe) => {
-                            return <Recipe
-                                key={recipe.recipe.label}
-                                label={recipe.recipe.label}
-                                image={recipe.recipe.image}
-                                calories={recipe.recipe.calories}
-                                ingredients={recipe.recipe.ingredients}
-                            />
+                        visibleRecipes.map((recipe) => {
+                            return (
+                                    <Recipe
+                                        key={recipe.recipe.label}
+                                        label={recipe.recipe.label}
+                                        image={recipe.recipe.image}
+                                        calories={recipe.recipe.calories}
+                                        ingredients={recipe.recipe.ingredients}
+                                    />
+                            );
                         })}
                 </div>
                 <Button

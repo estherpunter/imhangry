@@ -1,9 +1,9 @@
 import './InputField.css';
 
-function InputField({text, id, register, placeholder, value, onChange}) {
+function InputField({type, id, register, placeholder, value, onChange}) {
     return (
         <input
-            type={text}
+            type={type}
             id={id}
             {...register(id)}
             placeholder={placeholder}

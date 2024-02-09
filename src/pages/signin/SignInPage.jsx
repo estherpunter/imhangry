@@ -22,7 +22,7 @@ function SignInPage() {
         toggleLoading(true);
 
         try {
-            const response = await axios.post('https://frontend-educational-backend.herokuapp.com/api/auth/signin', {
+            const response = await axios.post("https://frontend-educational-backend.herokuapp.com/api/auth/signin", {
                     username: username,
                     password: password,
                 }

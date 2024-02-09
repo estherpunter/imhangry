@@ -24,7 +24,7 @@ function SignUpPage() {
         toggleLoading(true);
 
         try {
-            await axios.post('https://frontend-educational-backend.herokuapp.com/api/auth/signup',
+            await axios.post("https://frontend-educational-backend.herokuapp.com/api/auth/signup",
                 {
                     username: username,
                     email: email,

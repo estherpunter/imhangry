@@ -13,3 +13,7 @@
     align-self: center;
     text-align: center;
 }
+
+.favourite-section h2 {
+    padding: 0 0 20px 0;
+}

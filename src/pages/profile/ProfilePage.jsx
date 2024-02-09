@@ -40,7 +40,7 @@ function ProfilePage() {
     }, [user]);
 
     return (
-        <div className="profile-page">
+        <div className="profile-page-container">
             <Profile
                 username={userData.username}
                 email={userData.email}

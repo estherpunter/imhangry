@@ -3,44 +3,41 @@ import axios from "axios";
 import Recipe from "../../components/recipe/Recipe.jsx";
 import './AllRecipes.css';
 import Button from "../../components/button/Button.jsx";
+import usePages from "../../helpers/usePages.js";
 
 function AllRecipes() {
     const [error, toggleError] = useState(false);
     const [loading, toggleLoading] = useState(false);
     const [recipes, setRecipes] = useState([])
-    const [currentPage, setCurrentPage] = useState(1);
 
-    const recipesPerPage = 64;
+    const itemsPerPage = 64;
+    const {currentPage, handleNextPage, handlePrevPage, getVisibleItems, getTotalPages} = usePages(itemsPerPage);
 
-    const startIndex = (currentPage - 1) * recipesPerPage;
-    const endIndex = startIndex + recipesPerPage;
-    const visibleRecipes = recipes.slice(startIndex, endIndex);
-
-    const totalPages = Math.ceil(recipes.length / recipesPerPage);
-
-    const handleNextPage = () => {
-        setCurrentPage(currentPage + 1);
-        console.log('Next page clicked. Current page:', currentPage + 1);
-    };
-
-    const handlePrevPage = () => {
-        setCurrentPage(currentPage - 1);
-    };
+    const visibleRecipes = getVisibleItems(recipes);
+    const totalPages = getTotalPages(recipes.length);
 
     const appId = process.env.REACT_APP_API_ID;
     const appKey = process.env.REACT_APP_API_KEY;
 
 
     useEffect(() => {
-        const controller = new AbortController();
 
+        const controller = new AbortController();
         async function fetchData() {
             toggleLoading(true);
             toggleError(false);
 
+            const endpoint = "https://api.edamam.com/api/recipes/v2";
+
             try {
-                const response = await axios.get(`https://api.edamam.com/api/recipes/v2?type=public&app_id=${appId}&app_key=${appKey}&diet=balanced`, {
+                const response = await axios.get(endpoint, {
                     signal: controller.signal,
+                    params: {
+                        type: "public",
+                        app_id: appId,
+                        app_key: appKey,
+                        diet: "balanced",
+                    }
                 });
                 setRecipes(response.data.hits);
             } catch (e) {
@@ -61,7 +58,7 @@ function AllRecipes() {
             controller.abort();
         }
 
-    }, []);
+    }, [currentPage, appKey, appId]);
 
     return (
         <>

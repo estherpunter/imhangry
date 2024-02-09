@@ -25,6 +25,8 @@ function EmptyTheFridge() {
         } catch (e) {
             console.error(e);
             toggleError(true);
+        } finally {
+            toggleLoading(false);
         }
     }
 
@@ -59,6 +61,7 @@ function EmptyTheFridge() {
                     {Object.keys(recipes).length > 0 &&
                         recipes.map((recipe) => {
                             return <Recipe
+                                key={recipe.recipe.label}
                                 label={recipe.recipe.label}
                                 image={recipe.recipe.image}
                                 calories={recipe.recipe.calories}

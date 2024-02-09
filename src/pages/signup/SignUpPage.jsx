@@ -35,10 +35,10 @@ function SignUpPage() {
         } catch (e) {
             console.error(e);
             toggleError(true);
+        } finally {
+            toggleLoading(false);
         }
-        toggleLoading(false);
     }
-
 
     return (
         <>
@@ -99,6 +99,11 @@ function SignUpPage() {
             <section>
                 <p>I already have an account, <Link to='/signin'>sign in</Link> instead.</p>
             </section>
+
+            {error && <p className="error">Something went wrong with loading the page</p>}
+            {loading && <p className="loading">Loading...</p>}
+
+
         </>
     )
 }

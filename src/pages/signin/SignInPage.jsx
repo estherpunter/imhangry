@@ -31,10 +31,9 @@ function SignInPage() {
         } catch (e) {
             console.error(e);
             toggleError(true);
+        } finally {
+            toggleLoading(false);
         }
-
-        toggleLoading(false);
-
     }
 
     return (
@@ -76,6 +75,7 @@ function SignInPage() {
                         text='Sign me in!'
                     />
 
+                    {error && <p className="error">Something went wrong with loading the page</p>}
                     {loading && <p className="loading">Loading...</p>}
 
                 </form>

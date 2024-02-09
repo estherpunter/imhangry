@@ -1,0 +1,15 @@
+.profile-card {
+    margin: 40px;
+    text-align: left;
+}
+
+.profile-card h3 {
+    font-size: 60px;
+    padding: 20px;
+    text-align: left;
+}
+
+.favourite-section {
+    align-self: center;
+    text-align: center;
+}

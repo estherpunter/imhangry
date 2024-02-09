@@ -1,6 +1,8 @@
+import './ProfilePage.css';
 import {useContext, useEffect, useState} from "react";
 import axios from "axios";
 import {AuthContext} from "../../context/AuthContext.jsx";
+import Profile from "../../components/profile/Profile.jsx";
 
 function ProfilePage() {
 
@@ -38,23 +40,15 @@ function ProfilePage() {
     }, [user]);
 
     return (
-        <>
-            <main>
-                <h3>Profile</h3>
-                <div>
-                    <p>Username: {userData.username}</p>
-                    <p>Email address: {userData.email}</p>
-                </div>
-            </main>
-            <section>
-                <h2>Favourites</h2>
-                <p>These are your favourite recipes!</p>
-            </section>
+        <div className="profile-page">
+            <Profile
+                username={userData.username}
+                email={userData.email}
+            />
 
             {error && <p className="error">Something went wrong with loading the page</p>}
             {loading && <p className="loading">Loading...</p>}
-
-        </>
+        </div>
     )
 }
 

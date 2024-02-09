@@ -45,7 +45,7 @@ function AllRecipes() {
             controller.abort();
         }
 
-    }, [recipes]);
+    }, []);
 
     return (
         <>

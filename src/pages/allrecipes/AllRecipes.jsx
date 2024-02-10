@@ -19,10 +19,10 @@ function AllRecipes() {
     const appId = process.env.REACT_APP_API_ID;
     const appKey = process.env.REACT_APP_API_KEY;
 
-
     useEffect(() => {
 
         const controller = new AbortController();
+
         async function fetchData() {
             toggleLoading(true);
             toggleError(false);
@@ -52,7 +52,7 @@ function AllRecipes() {
             }
         }
 
-        void fetchData()
+        void fetchData();
 
         return function cleanup() {
             controller.abort();
@@ -72,13 +72,13 @@ function AllRecipes() {
                     {Object.keys(visibleRecipes).length > 0 &&
                         visibleRecipes.map((recipe) => {
                             return (
-                                    <Recipe
-                                        key={recipe.recipe.label}
-                                        label={recipe.recipe.label}
-                                        image={recipe.recipe.image}
-                                        calories={recipe.recipe.calories}
-                                        ingredients={recipe.recipe.ingredients}
-                                    />
+                                <Recipe
+                                    key={recipe.recipe.uri}
+                                    label={recipe.recipe.label}
+                                    image={recipe.recipe.image}
+                                    calories={recipe.recipe.calories}
+                                    ingredients={recipe.recipe.ingredients}
+                                />
                             );
                         })}
                 </div>

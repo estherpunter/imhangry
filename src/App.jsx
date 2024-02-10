@@ -15,10 +15,10 @@ function App() {
         <>
             <main className='outer-container'>
                 <header className='header-container'>
-                <Navbar/>
+                    <Navbar/>
                 </header>
                 <Routes>
-                    <Route path="/" element={<Homepage/>}/>
+                    <Route index element={<Homepage/>}/>
                     <Route path="/allrecipes" element={<AllRecipes/>}/>
                     <Route path="/emptythefridge" element={<EmptyTheFridge/>}/>
                     <Route path="/signup" element={<SignUpPage/>}/>
@@ -34,4 +34,4 @@ function App() {
     )
 }
 
-export default App
+export default App;

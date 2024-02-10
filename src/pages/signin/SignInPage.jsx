@@ -27,7 +27,7 @@ function SignInPage() {
                     password: password,
                 }
             );
-            login(response.data.accessToken)
+            login(response.data.accessToken);
         } catch (e) {
             console.error(e);
             toggleError(true);

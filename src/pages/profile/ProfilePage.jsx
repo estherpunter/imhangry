@@ -1,30 +1,22 @@
 import './ProfilePage.css';
 import {useContext, useEffect, useState} from "react";
-import axios from "axios";
 import {AuthContext} from "../../context/AuthContext.jsx";
 import Profile from "../../components/profile/Profile.jsx";
 
 function ProfilePage() {
-
     const [error, toggleError] = useState(false);
     const [loading, toggleLoading] = useState(false);
-    const [userData, setUserData] = useState({});
 
-    const {user} = useContext(AuthContext)
+    const {isAuthenticated, user} = useContext(AuthContext)
 
     useEffect(() => {
         async function fetchUserData() {
-            toggleError(false);
-            toggleLoading(true);
-
+            if (isAuthenticated) {
+                toggleError(false);
+                toggleLoading(true);
+            }
             try {
-                const response = await axios.get(`https://frontend-educational-backend.herokuapp.com/api/user`, {
-                    headers: {
-                        "Content-Type": "application/json",
-                        Authorization: `Bearer ${localStorage.getItem('token')}`,
-                    }
-                });
-                setUserData(response.data);
+                console.log("User data: ", user);
             } catch (e) {
                 console.error(e);
                 toggleError(true);
@@ -35,14 +27,18 @@ function ProfilePage() {
 
         void fetchUserData();
 
-    }, [user]);
+    }, [isAuthenticated, user]);
 
     return (
         <div className="profile-page-container">
-            <Profile
-                username={userData.username}
-                email={userData.email}
-            />
+            {isAuthenticated ? (
+                <Profile
+                    username={user.username}
+                    email={user.email}
+                />
+            ) : (
+                <p>Please log in to view your profile.</p>
+            )}
 
             {error && <p className="error">Something went wrong with loading the page</p>}
             {loading && <p className="loading">Loading...</p>}

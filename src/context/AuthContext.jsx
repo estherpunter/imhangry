@@ -1,12 +1,11 @@
 import {createContext, useEffect, useState} from "react";
-// import {jwtDecode} from "jwt-decode";
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
 import {jwtDecode} from "jwt-decode";
 
 export const AuthContext = createContext({});
 
-function AuthContextProvider({ children }) {
+function AuthContextProvider({children}) {
     const [isAuth, setIsAuth] = useState({
         isAuthenticated: false,
         user: null,
@@ -17,7 +16,7 @@ function AuthContextProvider({ children }) {
 
     useEffect(() => {
         const token = localStorage.getItem('token');
-        if (token) {
+        if (token && !isAuth.isAuthenticated) {
             void login(token);
         } else {
             setIsAuth(prevState => ({
@@ -25,7 +24,7 @@ function AuthContextProvider({ children }) {
                 status: 'done',
             }));
         }
-    }, []);
+    }, [isAuth.isAuthenticated]);
 
     async function login(token) {
         localStorage.setItem('token', token);
@@ -49,15 +48,16 @@ function AuthContextProvider({ children }) {
                     email: response.data.email,
                 },
                 status: 'done',
-            })
+            });
+            navigate('/profile');
         } catch (e) {
             console.error(e);
             setIsAuth({
-                ...isAuth,
+                isAuthenticated: false,
+                user: null,
                 status: 'done',
             })
         }
-        navigate('/profile');
     }
 
     function logout() {

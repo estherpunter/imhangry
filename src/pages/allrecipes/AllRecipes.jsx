@@ -52,7 +52,7 @@ function AllRecipes() {
             }
         }
 
-        void fetchData()
+        void fetchData();
 
         return function cleanup() {
             controller.abort();

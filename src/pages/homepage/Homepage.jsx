@@ -2,68 +2,75 @@ import axios from "axios";
 import {useState} from "react";
 import Button from "../../components/button/Button.jsx";
 import './Homepage.css';
+import Label from "../../components/label/Label.jsx";
 
 function Homepage() {
+    const [error, toggleError] = useState(false);
+    const [loading, toggleLoading] = useState(false);
+
     const [selectedMood, setSelectedMood] = useState('');
     const [selectedTime, setSelectedTime] = useState('');
     const [selectedMotivation, setSelectedMotivation] = useState('')
 
-    async function fetchData() {
+        async function fetchData() {
+            toggleLoading(true);
+            toggleError(false);
 
-        const appId = process.env.REACT_APP_API_ID;
-        const appKey = process.env.REACT_APP_API_KEY;
+            const appId = process.env.REACT_APP_API_ID;
+            const appKey = process.env.REACT_APP_API_KEY;
 
-        try {
-            const response = await axios.get(`https://api.edamam.com/api/recipes/v2?type=public&app_id=${appId}&app_key=${appKey}&ingr=${selectedMotivation}&time=${selectedTime}&tag=${selectedMood}`);
-            console.log(response.data);
-        } catch (e) {
-            console.error(e);
+            try {
+                const response = await axios.get(`https://api.edamam.com/api/recipes/v2?type=public&app_id=${appId}&app_key=${appKey}&ingr=${selectedMotivation}&time=${selectedTime}&tag=${selectedMood}`);
+                console.log(response.data);
+            } catch (e) {
+                console.error(e);
+                toggleError(true);
+            } finally {
+                toggleLoading(false)
+            }
         }
-    }
+
 
     return (
         <>
             <main>
                 <h1>I'm Hangry</h1>
 
-                <label htmlFor="mood-field">
-                    <p>What is your mood?</p>
-                    <select
-                        value={selectedMood}
-                        onChange={(e) => setSelectedMood(e.target.value)}
-                        id='mood-field'
-                        className='select-field'
-                    >
-                        <option value="comfort">Hangry</option>
-                        <option value="healthy">Feeling good</option>
-                    </select>
-                </label>
+                <Label
+                    htmlText="mood-field"
+                    question="What is your mood?"
+                    value={selectedMood}
+                    onChange={(e) => setSelectedMood(e.target.value)}
+                    id="mood-field"
+                    optionValue1="comfort"
+                    optionValue2="healthy"
+                    optionText1="Hangry"
+                    optionText2="Feeling good"
+                />
 
-                <label htmlFor="time-field">
-                    <p>How much time do you have to cook?</p>
-                    <select
-                        value={selectedTime}
-                        onChange={(e) => setSelectedTime(e.target.value)}
-                        id='time-field'
-                        className='select-field'
-                    >
-                        <option value="20">Less than 20 minutes</option>
-                        <option value="20+">More than 20 minutes</option>
-                    </select>
-                </label>
+                <Label
+                    htmlText="time-field"
+                    question="How much time do you have to cook?"
+                    value={selectedTime}
+                    onChange={(e) => setSelectedTime(e.target.value)}
+                    id="time-field"
+                    optionValue1="20"
+                    optionValue2="20+"
+                    optionText1="Less than 20 minutes"
+                    optionText2="More than 20 minutes"
+                />
 
-                <label htmlFor="motivation-field">
-                    <p>Are you feeling like a chef today?</p>
-                    <select
-                        value={selectedMotivation}
-                        onChange={(e) => setSelectedMotivation(e.target.value)}
-                        id='motivation-field'
-                        className='select-field'
-                    >
-                        <option value="5">Not at all</option>
-                        <option value="5+">Hell yeah!</option>
-                    </select>
-                </label>
+                <Label
+                    htmlText="motivation-field"
+                    question="Are you feeling like a chef today?"
+                    value={selectedMotivation}
+                    onChange={(e) => setSelectedMotivation(e.target.value)}
+                    id="motivation-field"
+                    optionValue1="5"
+                    optionValue2="5+"
+                    optionText1="Not at all"
+                    optionText2="Hell yeah!"
+                />
 
                 <div>
                     <Button
@@ -74,6 +81,11 @@ function Homepage() {
                     />
                 </div>
             </main>
+
+
+            {error && <p className="error">Something went wrong with fetching the data</p>}
+            {loading && <p className="loading">Loading...</p>}
+
         </>
     )
 }

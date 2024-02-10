@@ -73,7 +73,7 @@ function AllRecipes() {
                         visibleRecipes.map((recipe) => {
                             return (
                                 <Recipe
-                                    key={recipe.recipe.label}
+                                    key={recipe.recipe.uri}
                                     label={recipe.recipe.label}
                                     image={recipe.recipe.image}
                                     calories={recipe.recipe.calories}

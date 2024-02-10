@@ -16,8 +16,12 @@ function AllRecipes() {
     const visibleRecipes = getVisibleItems(recipes);
     const totalPages = getTotalPages(recipes.length);
 
-    const appId = process.env.REACT_APP_API_ID;
-    const appKey = process.env.REACT_APP_API_KEY;
+    // const appId = process.env.REACT_APP_API_ID;
+    // const appKey = process.env.REACT_APP_API_KEY;
+
+    const appId='48b29177';
+    const appKey='52752632656d92c4e04a605a6481ad57';
+
 
     useEffect(() => {
 

@@ -49,15 +49,16 @@ function AuthContextProvider({ children }) {
                     email: response.data.email,
                 },
                 status: 'done',
-            })
+            });
+            navigate('/profile');
         } catch (e) {
             console.error(e);
             setIsAuth({
-                ...isAuth,
+                isAuthenticated: false,
+                user: null,
                 status: 'done',
             })
         }
-        navigate('/profile');
     }
 
     function logout() {

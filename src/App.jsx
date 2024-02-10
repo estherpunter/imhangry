@@ -15,7 +15,7 @@ function App() {
         <>
             <main className='outer-container'>
                 <header className='header-container'>
-                <Navbar/>
+                    <Navbar/>
                 </header>
                 <Routes>
                     <Route index element={<Homepage/>}/>

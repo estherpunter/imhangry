@@ -24,13 +24,9 @@ function SignUpPage() {
         toggleLoading(true);
 
         try {
-            await axios.post("https://frontend-educational-backend.herokuapp.com/api/auth/signup",
-                {
-                    username: username,
-                    email: email,
-                    password: password,
-                    role: ["user"],
-                });
+            await axios.post("https://frontend-educational-backend.herokuapp.com/api/auth/signup", {
+                username: username, email: email, password: password, role: ["user"],
+            });
             navigate('/signin')
         } catch (e) {
             console.error(e);
@@ -40,8 +36,7 @@ function SignUpPage() {
         }
     }
 
-    return (
-        <>
+    return (<>
             <main>
                 <h1>Sign up</h1>
                 <form className='sign-up-form'>
@@ -104,8 +99,7 @@ function SignUpPage() {
             {loading && <p className="loading">Loading...</p>}
 
 
-        </>
-    )
+        </>)
 }
 
 export default SignUpPage;

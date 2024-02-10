@@ -14,24 +14,24 @@ function Homepage() {
     const [selectedMotivation, setSelectedMotivation] = useState('')
     const [recipes, setRecipes] = useState([]);
 
-        async function fetchData() {
-            toggleLoading(true);
-            toggleError(false);
+    async function fetchData() {
+        toggleLoading(true);
+        toggleError(false);
 
-            const appId = process.env.REACT_APP_API_ID;
-            const appKey = process.env.REACT_APP_API_KEY;
+        const appId = process.env.REACT_APP_API_ID;
+        const appKey = process.env.REACT_APP_API_KEY;
 
 
-            try {
-                const response = await axios.get(`https://api.edamam.com/api/recipes/v2?type=public&app_id=${appId}&app_key=${appKey}&ingr=${selectedMotivation}&time=${selectedTime}&tag=${selectedMood}`);
-                setRecipes(response.data.hits);
-            } catch (e) {
-                console.error(e);
-                toggleError(true);
-            } finally {
-                toggleLoading(false)
-            }
+        try {
+            const response = await axios.get(`https://api.edamam.com/api/recipes/v2?type=public&app_id=${appId}&app_key=${appKey}&ingr=${selectedMotivation}&time=${selectedTime}&tag=${selectedMood}`);
+            setRecipes(response.data.hits);
+        } catch (e) {
+            console.error(e);
+            toggleError(true);
+        } finally {
+            toggleLoading(false)
         }
+    }
 
 
     return (
@@ -99,7 +99,6 @@ function Homepage() {
                         })}
                 </div>
             </section>
-
 
 
             {error && <p className="error">Something went wrong with fetching the data</p>}

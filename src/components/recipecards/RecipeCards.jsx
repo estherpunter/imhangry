@@ -1,7 +1,7 @@
 import './RecipeCards.css';
 import {Link} from "react-router-dom";
 
-function RecipeCard({label}) {
+function RecipeCards({label}) {
     return (
         <>
             <main className="recipe-details">
@@ -22,4 +22,4 @@ function RecipeCard({label}) {
 
 }
 
-export default RecipeCard;
+export default RecipeCards;

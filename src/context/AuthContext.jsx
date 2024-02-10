@@ -16,7 +16,7 @@ function AuthContextProvider({ children }) {
 
     useEffect(() => {
         const token = localStorage.getItem('token');
-        if (token) {
+        if (token && !isAuth.isAuthenticated) {
             void login(token);
         } else {
             setIsAuth(prevState => ({
@@ -24,7 +24,7 @@ function AuthContextProvider({ children }) {
                 status: 'done',
             }));
         }
-    }, []);
+    }, [isAuth.isAuthenticated]);
 
     async function login(token) {
         localStorage.setItem('token', token);

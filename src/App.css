@@ -6,24 +6,6 @@
     margin: 0;
 }
 
-.footer {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    background-color: #f1f1f1;
-    text-align: center;
-}
-
-.footer p {
-    font-family: 'Inter', sans-serif;
-    font-size: 12px;
-    background-color: black;
-    color: white;
-    text-align: center;
-    padding: 10px;
-    font-weight: lighter;
-}
-
 .outer-container {
     background-image: url("/src/assets/ella-olsson-opbjwbccaeo-unsplash.jpg");
     background-size: cover;
@@ -80,3 +62,20 @@ input {
     margin: 2px 0 0 0;
 }
 
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #f1f1f1;
+    text-align: center;
+}
+
+.footer p {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    font-weight: lighter;
+}

@@ -25,7 +25,10 @@ function SignUpPage() {
 
         try {
             await axios.post("https://frontend-educational-backend.herokuapp.com/api/auth/signup", {
-                username: username, email: email, password: password, role: ["user"],
+                username: username,
+                email: email,
+                password: password,
+                role: ["user"],
             });
             navigate('/signin')
         } catch (e) {
@@ -36,7 +39,8 @@ function SignUpPage() {
         }
     }
 
-    return (<>
+    return (
+        <>
             <main>
                 <h1>Sign up</h1>
                 <form className='sign-up-form'>
@@ -91,15 +95,17 @@ function SignUpPage() {
                     </div>
                 </form>
             </main>
-            <section>
+
+            <section className='sign-in-section'>
                 <p>I already have an account, <Link to='/signin'>sign in</Link> instead.</p>
             </section>
+
 
             {error && <p className="error">Something went wrong with loading the page</p>}
             {loading && <p className="loading">Loading...</p>}
 
-
-        </>)
+        </>
+    )
 }
 
 export default SignUpPage;

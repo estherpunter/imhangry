@@ -10,8 +10,8 @@ function EmptyTheFridge() {
     const [recipes, setRecipes] = useState([]);
     const [query, setQuery] = useState('');
 
-    const appId = '48b29177';
-    const appKey = '1f0f159ce52371ca9f5937111c6446c1'
+    const appId = process.env.REACT_APP_API_ID;
+    const appKey = process.env.REACT_APP_API_KEY;
 
     async function fetchRecipes() {
         toggleError(false);
@@ -19,7 +19,6 @@ function EmptyTheFridge() {
 
         try {
             const response = await axios.get(`https://api.edamam.com/api/recipes/v2?type=public&q=${query}&app_id=${appId}&app_key=${appKey}`);
-            console.log(response.data.hits)
             setRecipes(response.data.hits);
             toggleLoading(false);
         } catch (e) {

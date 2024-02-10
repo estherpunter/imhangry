@@ -3,6 +3,7 @@ import {useState} from "react";
 import Button from "../../components/button/Button.jsx";
 import './Homepage.css';
 import Label from "../../components/label/Label.jsx";
+import Recipe from "../../components/recipe/Recipe.jsx";
 
 function Homepage() {
     const [error, toggleError] = useState(false);
@@ -11,6 +12,7 @@ function Homepage() {
     const [selectedMood, setSelectedMood] = useState('');
     const [selectedTime, setSelectedTime] = useState('');
     const [selectedMotivation, setSelectedMotivation] = useState('')
+    const [recipes, setRecipes] = useState([]);
 
         async function fetchData() {
             toggleLoading(true);
@@ -19,9 +21,10 @@ function Homepage() {
             const appId = process.env.REACT_APP_API_ID;
             const appKey = process.env.REACT_APP_API_KEY;
 
+
             try {
                 const response = await axios.get(`https://api.edamam.com/api/recipes/v2?type=public&app_id=${appId}&app_key=${appKey}&ingr=${selectedMotivation}&time=${selectedTime}&tag=${selectedMood}`);
-                console.log(response.data);
+                setRecipes(response.data.hits);
             } catch (e) {
                 console.error(e);
                 toggleError(true);
@@ -81,6 +84,22 @@ function Homepage() {
                     />
                 </div>
             </main>
+
+            <section>
+                <div className='homepage-results'>
+                    {Object.keys(recipes).length > 0 &&
+                        recipes.map((recipe) => {
+                            return <Recipe
+                                key={recipe.recipe.label}
+                                label={recipe.recipe.label}
+                                image={recipe.recipe.image}
+                                calories={recipe.recipe.calories}
+                                ingredients={recipe.recipe.ingredients}
+                            />
+                        })}
+                </div>
+            </section>
+
 
 
             {error && <p className="error">Something went wrong with fetching the data</p>}

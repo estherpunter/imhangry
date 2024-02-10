@@ -21,9 +21,19 @@ function Homepage() {
         const appId = process.env.REACT_APP_API_ID;
         const appKey = process.env.REACT_APP_API_KEY;
 
+        const endpoint = "https://api.edamam.com/api/recipes/v2"
 
         try {
-            const response = await axios.get(`https://api.edamam.com/api/recipes/v2?type=public&app_id=${appId}&app_key=${appKey}&ingr=${selectedMotivation}&time=${selectedTime}&tag=${selectedMood}`);
+            const response = await axios.get(endpoint, {
+                params: {
+                    type: "public",
+                    app_id: appId,
+                    app_key: appKey,
+                    ingr: selectedMotivation,
+                    time: selectedTime,
+                    tag: selectedMood,
+                }
+            });
             setRecipes(response.data.hits);
         } catch (e) {
             console.error(e);
@@ -87,16 +97,15 @@ function Homepage() {
 
             <section>
                 <div className='homepage-results'>
-                    {Object.keys(recipes).length > 0 &&
-                        recipes.map((recipe) => {
-                            return <Recipe
-                                key={recipe.recipe.label}
-                                label={recipe.recipe.label}
-                                image={recipe.recipe.image}
-                                calories={recipe.recipe.calories}
-                                ingredients={recipe.recipe.ingredients}
-                            />
-                        })}
+                    {recipes.map((recipe) => {
+                        return <Recipe
+                            key={recipe.recipe.label}
+                            label={recipe.recipe.label}
+                            image={recipe.recipe.image}
+                            calories={recipe.recipe.calories}
+                            ingredients={recipe.recipe.ingredients}
+                        />
+                    })}
                 </div>
             </section>
 

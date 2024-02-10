@@ -19,7 +19,6 @@ function AllRecipes() {
     const appId = process.env.REACT_APP_API_ID;
     const appKey = process.env.REACT_APP_API_KEY;
 
-
     useEffect(() => {
 
         const controller = new AbortController();

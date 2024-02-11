@@ -7,7 +7,7 @@ Het doel van de applicatie is om de dagelijkse moeite van het bedenken van een l
 
 Zo kan je direct op de homepagina een paar grappige vragen beantwoorden over hoe je je voelt, hoeveel tijd je hebt, en hoeveel zin je hebt om te komen. De applicatie laat je vervolgens passende recepten zien. Daarnaast kunnen gebruikers de applicatie ook gebruiken om door een grote database van recepten te browsen als ze al een idee hebben over wat ze willen koken. Verder kunnen gebruikers door middel van de zoekfunctie ook op zoek naar gerechten met specifieke ingrediënten, en bestaat er de optie om op specifieke ingrediënten te filteren (voor als je die bijna-rotte tomaat uit je koelkast nog heel graag wil gebruiken in een recept). Ten slotte is het voor gebruikers mogelijk om zich te registreren en inloggen en hun favoriete recepten te bekijken op hun profielpagina.
 
-Volg de volgende stappen om de applicatie op je lokale computer te installeren.
+**Volg de volgende stappen om de applicatie op je lokale computer te installeren.**
 
 ## **Vereisten:**
 

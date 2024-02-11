@@ -2,6 +2,7 @@ import {createContext, useEffect, useState} from "react";
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
 import {jwtDecode} from "jwt-decode";
+import {validateToken} from "../helpers/validateToken.js";
 
 export const AuthContext = createContext({});
 
@@ -19,7 +20,7 @@ function AuthContextProvider({children}) {
         if (token && !isAuth.isAuthenticated) {
             void login(token);
         } else {
-            setIsAuth(prevState => ({
+            setIsAuth((prevState) => ({
                 ...prevState,
                 status: 'done',
             }));
@@ -27,39 +28,50 @@ function AuthContextProvider({children}) {
     }, [isAuth.isAuthenticated]);
 
     async function login(token) {
-        localStorage.setItem('token', token);
+        const decodedToken = validateToken(token);
 
-        const userInfo = jwtDecode(token);
-        const user = userInfo.sub;
+        if (decodedToken) {
+            localStorage.setItem('token', token);
 
-        try {
-            const response = await axios.get("https://frontend-educational-backend.herokuapp.com/api/user", {
-                headers: {
-                    "Content-Type": "application/json",
-                    Authorization: `Bearer ${token}`,
-                }
-            });
+            const userInfo = jwtDecode(token);
+            const user = userInfo.sub;
 
-            setIsAuth({
-                ...isAuth,
-                isAuthenticated: true,
-                user: {
-                    username: response.data.username,
-                    email: response.data.email,
-                },
-                status: 'done',
-            });
-            navigate('/profile');
-        } catch (e) {
-            console.error(e);
+            try {
+                const response = await axios.get("https://frontend-educational-backend.herokuapp.com/api/user", {
+                        headers: {
+                            "Content-Type": "application/json",
+                            Authorization: `Bearer ${token}`,
+                        }
+                    }
+                );
+
+                setIsAuth({
+                    ...isAuth,
+                    isAuthenticated: true,
+                    user: {
+                        username: response.data.username,
+                        email: response.data.email,
+                    },
+                    status: 'done',
+                });
+                navigate('/profile');
+            } catch (e) {
+                console.error(e);
+                setIsAuth({
+                    isAuthenticated: false,
+                    user: null,
+                    status: 'done',
+                })
+            }
+        } else {
+            console.error("Invalid or expired token");
             setIsAuth({
                 isAuthenticated: false,
                 user: null,
-                status: 'done',
+                status: "done",
             })
         }
     }
-
     function logout() {
         localStorage.clear();
         setIsAuth({
